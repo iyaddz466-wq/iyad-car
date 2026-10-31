@@ -1,0 +1,26 @@
+name: build
+on: [push, workflow_dispatch]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+      - name: Fix folder layout
+        run: |
+          mkdir -p src/main/java/com/carmod src/main/resources gradle/wrapper tools
+          mv -f BodyType.java CarCatalog.java CarEntity.java CarItem.java CarMod.java CarModClient.java CarRenderer.java CarSpec.java src/main/java/com/carmod/ || true
+          mv -f fabric.mod.json src/main/resources/ || true
+          mv -f generate.py tools/ || true
+          mv -f gradle-wrapper.jar gradle-wrapper.properties gradle/wrapper/ || true
+          ls -R . | head -60
+      - run: python3 tools/generate.py
+      - run: chmod +x gradlew
+      - run: ./gradlew build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: carmod-jar
+          path: build/libs/*.jar
