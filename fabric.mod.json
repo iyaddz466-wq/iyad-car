@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "carmod",
+  "version": "${version}",
+  "name": "Car Mod",
+  "description": "Drivable cars from dozens of real-world brands. Just spawn and drive - no crafting.",
+  "authors": ["You"],
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["com.carmod.CarMod"],
+    "client": ["com.carmod.CarModClient"]
+  },
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "minecraft": "~1.21.1",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}
