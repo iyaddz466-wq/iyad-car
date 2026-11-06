@@ -12,7 +12,7 @@ jobs:
       - name: Fix folder layout
         run: |
           mkdir -p src/main/java/com/carmod src/main/resources gradle/wrapper tools
-          mv -f BodyType.java CarCatalog.java CarEntity.java CarItem.java CarMod.java CarModClient.java CarRenderer.java CarSpec.java src/main/java/com/carmod/ || true
+          mv -f *.java src/main/java/com/carmod/ || true
           mv -f fabric.mod.json src/main/resources/ || true
           mv -f generate.py tools/ || true
           mv -f gradle-wrapper.jar gradle-wrapper.properties gradle/wrapper/ || true
